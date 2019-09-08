@@ -1,0 +1,13 @@
+1)
+SELECT requests.id, offers.name, requests.price, requests.counts,operator.fio
+FROM requests
+         LEFT JOIN offers ON requests.offer_id = offers.id
+         LEFT JOIN operator ON requests.operator_id = operator.id
+WHERE requests.counts > 2 AND (requests.operator_id = 10 OR requests.operator_id = 12);
+
+
+2)
+SELECT off.name, r.counts, SUM(r.price*r.counts) AS Sums
+FROM requests r
+         LEFT JOIN offers off ON r.offer_id = off.id
+GROUP BY off.id;
